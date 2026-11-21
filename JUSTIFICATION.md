@@ -1,5 +1,14 @@
 # JUSTIFICATION — the design of the harness, and why
-<!-- STUDENT: replace -->
+<!-- STUDENT: Subbotina Tanya -->
+
+### Initial expectation
+
+I wrote this after starting the legal search. I expected logging
+to be the hardest control to link to a specific law, because the law
+may require accountability without specifying exactly what our log
+should contain.
+
+
 
 Replace this whole template with your own text. Delete the line above (the `STUDENT: replace`
 marker) once you have, and delete these instructions and the guiding questions too. Keep the headings
