@@ -1,0 +1,52 @@
+{
+  "harness_controls": [
+    "validate_input",
+    "blind",
+    "refuse",
+    "log",
+    "escalate"
+  ],
+  "format_problems": [],
+  "entries": [
+    {
+      "control": "validate_input",
+      "principle": "Robustness, security and safety",
+      "principle_source": "OECD Recommendation on Artificial Intelligence, 2019, updated 2024; non-binding ethical guidance; https://oecd.ai/en/ai-principles; Principle 1.4",
+      "instrument": "Republic of Kazakhstan Law No. 94-V of 21 May 2013, On Personal Data and Their Protection; https://adilet.zan.kz/rus/docs/Z1300000094",
+      "provision": "Article 24(1)(2): requests to correct personal data. Input checks support data quality, but do not verify truth or implement the full correction process.",
+      "why_here": "Used as a design benchmark for this synthetic prototype; a real deployment is assumed to operate in Kazakhstan. Impossible GPA and exam values were refused in the test; this addresses a separate risk from paired divergence."
+    },
+    {
+      "control": "blind",
+      "principle": "Human rights and democratic values, including fairness and privacy",
+      "principle_source": "OECD Recommendation on Artificial Intelligence, 2019, updated 2024; non-binding ethical guidance; https://oecd.ai/en/ai-principles; Principle 1.2",
+      "instrument": "Republic of Kazakhstan Law No. 94-V of 21 May 2013, On Personal Data and Their Protection; https://adilet.zan.kz/rus/docs/Z1300000094",
+      "provision": "Article 12(1): necessary and sufficient personal data. Hiding names and universities from the model is our design choice, not a specific statutory instruction.",
+      "why_here": "Used as a design benchmark for this synthetic prototype; a real deployment is assumed to operate in Kazakhstan. No attribute clearly exceeded its floor, so blinding is precautionary rather than proof of fixing discrimination."
+    },
+    {
+      "control": "refuse",
+      "principle": "Robustness, security and safety",
+      "principle_source": "OECD Recommendation on Artificial Intelligence, 2019, updated 2024; non-binding ethical guidance; https://oecd.ai/en/ai-principles; Principle 1.4",
+      "instrument": "Republic of Kazakhstan Law No. 94-V of 21 May 2013, On Personal Data and Their Protection; https://adilet.zan.kz/rus/docs/Z1300000094",
+      "provision": "Article 7(1): consent, subject to statutory exceptions; Article 19-1(1): conditions for automated processing affecting rights and legitimate interests. The adult-only scope and injection filter are additional design rules, not requirements attributed to these articles.",
+      "why_here": "Used as a design benchmark for this synthetic prototype; a real deployment is assumed to operate in Kazakhstan. The bare pipeline processed all six requests; the harness refused five without calling the model."
+    },
+    {
+      "control": "log",
+      "principle": "Accountability",
+      "principle_source": "OECD Recommendation on Artificial Intelligence, 2019, updated 2024; non-binding ethical guidance; https://oecd.ai/en/ai-principles; Principle 1.5",
+      "instrument": "Republic of Kazakhstan Law No. 94-V of 21 May 2013, On Personal Data and Their Protection; https://adilet.zan.kz/rus/docs/Z1300000094",
+      "provision": "Article 24(1)(1): information about personal-data processing. Logging supports investigation and information requests; this provision does not specifically require JSONL logs.",
+      "why_here": "Used as a design benchmark for this synthetic prototype; a real deployment is assumed to operate in Kazakhstan. The harness changed 63 outcomes, so decisions and controls need an audit record. The file is not tamper-proof."
+    },
+    {
+      "control": "escalate",
+      "principle": "Transparency and explainability",
+      "principle_source": "OECD Recommendation on Artificial Intelligence, 2019, updated 2024; non-binding ethical guidance; https://oecd.ai/en/ai-principles; Principle 1.3",
+      "instrument": "Republic of Kazakhstan Law No. 94-V of 21 May 2013, On Personal Data and Their Protection; https://adilet.zan.kz/rus/docs/Z1300000094",
+      "provision": "Article 19-1(2)-(3): explanation and objection safeguards for automated processing. Referrals support human oversight but do not implement a complete objection process.",
+      "why_here": "Used as a design benchmark for this synthetic prototype; a real deployment is assumed to operate in Kazakhstan. All model rejections and borderline cases require review; 58 of 400 profiles were referred. Human staffing and an applicant appeal route remain deployment requirements."
+    }
+  ]
+}
