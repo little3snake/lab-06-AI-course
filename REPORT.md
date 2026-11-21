@@ -1,66 +1,52 @@
 # REPORT — what the measurement showed, who it affects, and whose responsibility it is
-<!-- STUDENT: replace -->
-
-Replace this whole template with your own text. Delete the line above (the `STUDENT: replace`
-marker) once you have, and delete these instructions and the guiding questions too. Keep the three
-numbered headings. Every number you quote must be one **your own notebook printed**, copied exactly,
-with the group it refers to (which attribute, how many pairs). Which dimension each section is
-graded against is in the README.
-
-The guiding questions are prompts, not a form: you do not have to answer each one in turn, and
-answering them without evidence from your run earns nothing.
+Author: Subbotina Tanya
 
 ## 1. Measurement read-out
 
-(Dimension: Evidence of Specific Impact.)
+For 40 pairs per attribute, language had 2 flips (5.0% [1.4%, 16.5%]), gender had
+4 (10.0% [4.0%, 23.1%]), and university had 1 (2.5% [0.4%, 12.9%]).
+The name floor was 0/40 [0.0%, 8.8%]; the university floor was 1/40 [0.4%, 12.9%].
+No attribute clearly exceeded its floor.
 
-Guiding questions:
+All four gender flips favoured female-coded names, but p = 0.125. My prediction about
+Kazakh names doing worse was not supported. Mean absolute score differences were
+3.12 [1.38, 5.25] for language, 1.12 [0.25, 2.13] for gender, and 2.50 [1.12, 4.12]
+for university. The floors were 2.00 [0.62, 3.62] and 2.12 [0.88, 3.62].
+The signed flagship score advantage was +2.5 [+1.1, +4.1], but university flips matched
+the floor. The other signed gaps were +0.7 for Kazakh names, +0.2 for Russian names,
+-1.0 for English names, and -0.4 for male-coded names; their intervals included zero.
 
-- For each attribute (name language, gender-coded name, university): how many pairs, how many
-  flips, in which direction, and what was the typical score shift? Are these counts and magnitudes,
-  or a description of them?
-- Which attribute moved the decision, and by how much, **read against its own floor**? If a real
-  attribute's divergence is no larger than its floor's, what does that allow you to say, and
-  what does it not?
-- How much of the divergence could be noise? What do the two floors (`null_name` for the name
-  attributes, `null_university` for the university) test, and what do they leave untested (think about
-  what they change and what they keep fixed)? What would a stronger estimate require?
-- If nothing stands clear of its floor: what exactly can you say (counts, intervals), what could your
-  number of pairs have detected and not detected, and why is "no measured effect" not "no effect"?
-- Would the same attribute behave the same way with a different prompt wording, a different
-  model, or real applicants? Say what your run can and cannot support.
+The exact test needs at least 6 one-directional flips with none in the other direction.
+Smaller effects could remain undetected. The floors cover only the tested irrelevant
+changes, so this run does not prove fairness or predict results for real applicants.
+
+After blinding, all flips were zero because paired inputs became identical.
+Outcomes changed for 63/400 profiles, and scores for 166/400. Prompt formatting also
+changed, so these changes cannot be attributed only to the removed information.
+Human review covered 58/400 (14.5%), against the baseline band's estimate of 16.0%.
+Both runs used 400 model calls. The main added cost is reviewer workload.
 
 ## 2. Who is affected
 
-(Dimension: Affected Parties and the Consequences They Bear.)
+Applicants could lose funding through an unfair rejection, while an undeserved shortlist
+could displace someone else. The observed gender flips favoured female-coded names,
+and the university flip favoured the flagship institution. Without ground-truth labels,
+I cannot say which individual decisions were wrong.
 
-Guiding questions:
-
-- On each side of a **wrong** decision, who is it? Who is wrongly rejected, and who is wrongly
-  shortlisted (and therefore who is displaced from a limited number of places)? Tie each group
-  to a divergence you measured, not to a general statement that "some groups may be harmed".
-- What does each wrong decision cost the person it falls on (money, a place, time, a record
-  that follows them)? Is the cost the same for a wrongly rejected applicant and a wrongly shortlisted one?
-- Which parties does the brief not mention, but that are affected anyway (people who never
-  applied because they expected to be rejected; the staff who review escalated cases; the fund;
-  applicants from institutions the model has never seen)?
-- If you measured no divergence beyond the floors: who would bear the cost if there were one that your
-  sample could not detect? Tie that to what your number of pairs could and could not see.
-- Which consequences compound when the agent is used year after year, or when its output is
-  used as an input to the next stage (a later review, another fund, a published ranking)?
+Human referrals create delays and work for staff, and reviewers can also be biased.
+The refusal rules blocked 5/6 test requests and 0/400 clean applicants, but the keyword
+filter could still block harmless text. Applicants need a correction or manual route.
+Repeated use could carry an initial mistake into later selection stages.
 
 ## 3. Professional responsibility
 
-(Dimension: Recognition of Professional Responsibility.)
+I implemented and tested validation, blinding, refusals, logging and human referral.
+The log has 412 records because the six-request test was run twice after the main run.
 
-Guiding questions:
+One explanation treated consent as a reason for shortlisting. Consent should allow
+processing, not improve merit, so this needs further testing. The prototype also lacks
+an actual review queue, appeals, enforced retention and access rules, and tamper-proof logs.
 
-- Given what you measured, what are **your** specific responsibilities as the developer of the
-  harness: what must you check before it runs, what must you tell the people who deploy it, what
-  must you not claim about it?
-- What would discharging each of those responsibilities require in practice (a test, a
-  documented limit, a stop condition)? What have you actually done in this lab, and what is left?
-- Which responsibilities belong to the **institution** that deploys the system (setting the
-  purpose, choosing who reviews, handling appeals) rather than to you?
-- Where do the two conflict? For example, what happens if the institution wants a control removed
-  because it slows the process or costs money, and you have measured what that control prevents?
+The fund must define eligibility, provide reviewers and handle complaints. My responsibility
+is to explain these gaps and avoid claiming that this synthetic test proves deployment
+readiness. If controls are removed to save resources, I should document the resulting risks.
